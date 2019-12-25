@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcc0_lib.a  CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.o CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.o CMakeFiles/cc0_lib.dir/analyser/symTable.cpp.o
+/usr/bin/ranlib libcc0_lib.a

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/cc0.dir/main.cpp.o  -o cc0 libcc0_lib.a 3rd_party/fmt/libfmt.a 

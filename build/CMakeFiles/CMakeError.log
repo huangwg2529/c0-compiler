@@ -1,0 +1,35 @@
+Determining if the strtod_l exist failed with the following output:
+Change Dir: /root/share/c0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_eeba1/fast"
+make: Warning: File 'Makefile' has modification time 0.26 s in the future
+/usr/bin/make -f CMakeFiles/cmTC_eeba1.dir/build.make CMakeFiles/cmTC_eeba1.dir/build
+make[1]: Entering directory '/root/share/c0/build/CMakeFiles/CMakeTmp'
+make[1]: Warning: File 'CMakeFiles/cmTC_eeba1.dir/flags.make' has modification time 0.081 s in the future
+Building C object CMakeFiles/cmTC_eeba1.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_eeba1.dir/CheckSymbolExists.c.o   -c /root/share/c0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/root/share/c0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function 'main':
+/root/share/c0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: 'strtod_l' undeclared (first use in this function); did you mean 'strtoull'?
+   return ((int*)(&strtod_l))[argc];
+                   ^~~~~~~~
+                   strtoull
+/root/share/c0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_eeba1.dir/build.make:66: CMakeFiles/cmTC_eeba1.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/root/share/c0/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_eeba1/fast] Error 2
+
+File /root/share/c0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtod_l
+  return ((int*)(&strtod_l))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

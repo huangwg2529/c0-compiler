@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/cc0_test.dir/tests/test_main.cpp.o CMakeFiles/cc0_test.dir/tests/test_tokenizer.cpp.o CMakeFiles/cc0_test.dir/tests/test_analyser.cpp.o  -o cc0_test libcc0_lib.a 3rd_party/fmt/libfmt.a 

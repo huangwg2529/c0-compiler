@@ -1,0 +1,109 @@
+1. 整数字面量： 32位有符号整数
+
+<nonzero-digit> ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'
+<digit> ::= '0'|<nonzero-digit>
+<hexadecimal-digit> ::= <digit>|'a'|'b'|'c'|'d'|'e'|'f'|'A'|'B'|'C'|'D'|'E'|'F'
+<integer-literal> ::=  <decimal-literal>|<hexadecimal-literal>
+<decimal-literal> ::=  '0'|<nonzero-digit>{<digit>}     // 非0的十进制整数字面量不能有任何前导0。
+<hexadecimal-literal> ::= ('0x'|'0X')<hexadecimal-digit>{<hexadecimal-digit>}
+UB: 虽然字面量有类型意味着其有着受限的值域，但是C0并不要求对溢出进行报错，使用过大的字面量是未定义行为。
+你可以报出编译错误，也可以截断高位让其自然溢出，甚至选择给出一个善意的warning之后当作无事发生。
+
+2. 标识符
+
+<nondigit> ::=    'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'|'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'
+<identifier> ::= <nondigit>{<nondigit>|<digit>}
+
+3. 类型系统
+
+两种基础类指示符和一个常类型修饰符
+<type-specifier>         ::= <simple-type-specifier>
+<simple-type-specifier>  ::= 'void'|'int'
+<const-qualifier>        ::= 'const'
+
+4. 运算符
+
+<unary-operator>          ::= '+' | '-'
+<additive-operator>       ::= '+' | '-'
+<multiplicative-operator> ::= '*' | '/'
+<relational-operator>     ::= '<' | '<=' | '>' | '>=' | '!=' | '=='
+<assignment-operator>     ::= '='
+
+5. 表达式
+
+<assignment-expression> ::= <identifier><assignment-operator><expression>
+<condition> ::= <expression>[<relational-operator><expression>]
+<expression> ::= <additive-expression>
+<additive-expression> ::= <multiplicative-expression>{<additive-operator><multiplicative-expression>}
+<multiplicative-expression> ::= <unary-expression>{<multiplicative-operator><unary-expression>}
+<unary-expression> ::= [<unary-operator>]<primary-expression>
+<primary-expression> ::= '('<expression>')' | <identifier> | <integer-literal> | <function-call>
+
+6. 程序结构
+
+<C0-program> ::= {<variable-declaration>}{<function-definition>}
+
+7. 变量
+
+<variable-declaration> ::= [<const-qualifier>]<type-specifier><init-declarator-list>';'
+<init-declarator-list> ::= <init-declarator>{','<init-declarator>}
+<init-declarator> ::= <identifier>[<initializer>]
+<initializer> ::= '='<expression>
+变量的类型，不能是void或const void
+const修饰的变量必须被显式初始化：
+
+['const'] 'int | void' <identifier> [ '=' <expr> ] { ',' <init-declarator> }
+
+( 'int' | void ) <identifier> '(' [list] ')'
+
+8. 函数
+
+<function-definition> ::= <type-specifier><identifier><parameter-clause><compound-statement>
+
+<parameter-clause> ::= '(' [<parameter-declaration-list>] ')'
+<parameter-declaration-list> ::= <parameter-declaration>{','<parameter-declaration>}
+<parameter-declaration> ::= [<const-qualifier>]<type-specifier><identifier>
+
+<function-call> ::= <identifier> '(' [<expression-list>] ')'
+<expression-list> ::= <expression>{','<expression>}
+
+<compound-statement> ::= '{' {<variable-declaration>} <statement-seq> '}'
+<statement-seq> ::= {<statement>}
+<statement> ::= '{' <statement-seq> '}'
+                |<condition-statement>
+                |<loop-statement>
+                |<jump-statement>
+                |<print-statement>
+                |<scan-statement>
+                |<assignment-expression>';'
+                |<function-call>';'
+                |';'
+<jump-statement> ::= <return-statement>
+
+<return-statement> ::= 'return' [<expression>] ';'
+
+9. 条件语句
+
+<condition-statement> ::= 'if' '(' <condition> ')' <statement> ['else' <statement>]
+
+10. 循环语句
+
+<loop-statement> ::= 'while' '(' <condition> ')' <statement>
+
+11. 输入输出语句
+
+<scan-statement>  ::= 'scan' '(' <identifier> ')' ';'
+<print-statement> ::= 'print' '(' [<printable-list>] ')' ';'
+<printable-list>  ::= <printable> {',' <printable>}
+<printable> ::= <expression>
+
+12. 扩展C0
+
+注释
+
+<single-line-comment> ::= '//' {<any-char>} (<LF>|<CR>)    // <LF>是ascii值为0x0A的字符  <CR>是ascii值为0x0D的字符
+<multi-line-comment> ::= '/*' {<any-char>} '*/'
+
+注释的分析不遵循最大吞噬规则：
+    单行注释内容的分析遇到第一个0x0A或0x0D就立即结束
+    多行注释内容的分析遇到第一个*/序列就立即结束

@@ -1,0 +1,35 @@
+Determining if the _strtod_l exist failed with the following output:
+Change Dir: D:/share/c0/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/MinGW/bin/mingw32-make.exe cmTC_c63ea/fast && C:/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_c63ea.dir\build.make CMakeFiles/cmTC_c63ea.dir/build
+mingw32-make.exe[1]: Entering directory 'D:/share/c0/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c63ea.dir/CheckSymbolExists.c.obj
+C:\MinGW\bin\gcc.exe    -o CMakeFiles\cmTC_c63ea.dir\CheckSymbolExists.c.obj   -c D:\share\c0\cmake-build-debug\CMakeFiles\CMakeTmp\CheckSymbolExists.c
+D:\share\c0\cmake-build-debug\CMakeFiles\CMakeTmp\CheckSymbolExists.c: In function 'main':
+D:\share\c0\cmake-build-debug\CMakeFiles\CMakeTmp\CheckSymbolExists.c:8:19: error: '_strtod_l' undeclared (first use in this function); did you mean 'strtoull'?
+   return ((int*)(&_strtod_l))[argc];
+                   ^~~~~~~~~
+                   strtoull
+D:\share\c0\cmake-build-debug\CMakeFiles\CMakeTmp\CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+CMakeFiles\cmTC_c63ea.dir\build.make:64: recipe for target 'CMakeFiles/cmTC_c63ea.dir/CheckSymbolExists.c.obj' failed
+mingw32-make.exe[1]: *** [CMakeFiles/cmTC_c63ea.dir/CheckSymbolExists.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'D:/share/c0/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:120: recipe for target 'cmTC_c63ea/fast' failed
+mingw32-make.exe: *** [cmTC_c63ea/fast] Error 2
+
+
+File D:/share/c0/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _strtod_l
+  return ((int*)(&_strtod_l))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
