@@ -10,7 +10,7 @@
 
 &emsp;&emsp;不得不说助教提供的 miniplc0 对我们加深对编译器的认识很有帮助，有了它能快速结合课堂内容加深理解。并且指导书写得是真的非常详细。
 
-&emsp;&emsp;对初学者
+&emsp;&emsp;学习顺序：miniplc0 指导书 -> miniplc0 源码 -> 填补 miniplc0 -> 实现 c0.
 
 [miniplc0 指导书](https://github.com/BUAA-SE-Compiling/miniplc0-handbook)
 
