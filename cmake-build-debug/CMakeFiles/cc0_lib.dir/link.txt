@@ -1,2 +1,0 @@
-C:\MinGW\bin\ar.exe qc libcc0_lib.a  CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj CMakeFiles/cc0_lib.dir/analyser/symTable.cpp.obj
-C:\MinGW\bin\ranlib.exe libcc0_lib.a

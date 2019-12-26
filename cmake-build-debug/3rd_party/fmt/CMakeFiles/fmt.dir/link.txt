@@ -1,2 +1,0 @@
-C:\MinGW\bin\ar.exe qc libfmtd.a  CMakeFiles/fmt.dir/src/format.cc.obj CMakeFiles/fmt.dir/src/posix.cc.obj
-C:\MinGW\bin\ranlib.exe libfmtd.a
